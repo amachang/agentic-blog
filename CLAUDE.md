@@ -10,3 +10,13 @@ Check this file when planning features or understanding user stories.
 # Token Efficiency
 
 Write frequently referenced documentation in English to minimize token usage.
+
+# docs/ Structure
+
+`docs/` is not a workspace, but all directories under `docs/` are workspaces with a consistent structure:
+
+- **README.md** (required): Living document showing current state
+- **YYYYMMDD-*.md** (optional): Historical records, decision logs, detailed notes
+- **Sub-directories**: Nested workspaces following the same pattern
+
+This structure prevents information explosion - README.md stays current, details escape to dated files.
