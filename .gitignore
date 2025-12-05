@@ -1,2 +1,11 @@
+# Astro
+dist/
+.astro/
+
+# Node
+node_modules/
+
+# Project-specific
 .work/tmp
 .work/logs
+.claude/settings.local.json

@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+  pubDate: Date;
+  tags: string[];
+}
+
+const { title, pubDate, tags } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <article>
+      <header>
+        <h1>{title}</h1>
+        <time datetime={pubDate.toISOString()}>
+          {pubDate.toLocaleDateString('ja-JP')}
+        </time>
+        <div>
+          {tags.map((tag) => (
+            <a href={`/tags/${tag}`}>{tag}</a>
+          ))}
+        </div>
+      </header>
+      <main>
+        <slot />
+      </main>
+    </article>
+  </body>
+</html>
