@@ -11,6 +11,13 @@ Check this file when planning features or understanding user stories.
 
 Write frequently referenced documentation in English to minimize token usage.
 
+# docs/ Language Policy
+
+All documentation under `docs/` must be written in English. This ensures:
+- Consistent token usage across the project
+- Better compatibility with LLM processing
+- Unified documentation style
+
 # docs/ Structure
 
 `docs/` is not a workspace, but all directories under `docs/` are workspaces with a consistent structure:
