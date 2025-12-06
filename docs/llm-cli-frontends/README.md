@@ -7,7 +7,7 @@ CLI tools that provide a terminal interface to LLM APIs.
 | Tool | Version | Updated | Where to Check |
 |------|---------|---------|----------------|
 | [Claude Code](./claude-code/) | v2.0.59 | - | [CHANGELOG.md](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) |
-| [Codex CLI](./codex/) | latest | - | [Releases](https://github.com/openai/codex/releases) |
+| [Codex CLI](./codex-cli/) | latest | - | [Releases](https://github.com/openai/codex/releases) |
 | [Gemini CLI](./gemini-cli/) | v0.19.1 | 2025-12-03 | [Releases](https://github.com/google-gemini/gemini-cli/releases) |
 | [Opencode](./opencode/) | v1.0.133 | 2025-12-04 | [Releases](https://github.com/sst/opencode/releases) |
 

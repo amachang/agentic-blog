@@ -8,7 +8,7 @@ Each path is a workspace containing a README.md with research instructions in it
 
 ```
 docs/llm-cli-frontends/claude-code
-docs/llm-cli-frontends/codex
+docs/llm-cli-frontends/codex-cli
 docs/llm-cli-frontends/gemini-cli
 docs/llm-cli-frontends/opencode
 ```
@@ -56,6 +56,16 @@ After processing all workspaces:
 - Summarize findings (updates found, no changes, errors)
 - List any workspaces where research instructions were added
 - Note any issues encountered
+
+## Error Handling
+
+Parallel WebFetch requests may cause ETIMEDOUT errors due to concurrent connections. When this happens:
+
+- Retry the failed request 2-3 times before giving up
+- Consider using WebSearch as a fallback (often more reliable for GitHub pages)
+- If a specific URL consistently fails, try an alternative source (e.g., npm page, docs site)
+
+Don't let one failed fetch block the entire research process.
 
 ## Flexibility Clause
 
