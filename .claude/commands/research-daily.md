@@ -26,22 +26,9 @@ For each workspace in the target list:
 ### 2. ALIGN
 
 If a workspace README lacks a "Daily Research" section:
-- Create one based on existing README content (repository URL, releases URL, etc.)
-- Use this template:
-
-```markdown
-## Daily Research
-
-- **Check**: [URL or source to check]
-- **Sync**: [Optional: command to run, e.g., `npx tsx tools/foo/sync.ts`]
-- **Look for**: [What to look for - updates, new items, changes, etc.]
-- **Last known**: [Most recent state - version, date, or description]
-```
-
-**Examples:**
-- Software version: `**Last known**: v2.0.60 (2025-12-06)`
-- Paper tracking: `**Last known**: Checked 2025-12-05, 3 relevant papers found`
-- News/trends: `**Last known**: RAG dominant, agent frameworks emerging (2025-12)`
+- Create one based on existing README content
+- Describe what to check, how to check it, what to look for, and last known state
+- The format is flexible - adapt to the workspace's needs
 
 ### 3. CHECK PRIOR RUNS
 
@@ -60,11 +47,7 @@ Store this context for use in the REPORT phase. This does NOT skip the RESEARCH 
 For each workspace:
 - Follow the instructions in its "Daily Research" section
 - These are GUIDES, not rigid rules - adapt to what you find
-- Note any updates since **Last known**
-
-Research method is determined by workspace instructions:
-- **Check** with URL → use WebFetch or WebSearch
-- **Sync** with command → run command, read output
+- Note any updates since last known state
 
 ### 5. UPDATE
 

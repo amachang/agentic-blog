@@ -16,15 +16,12 @@ docs/llm-cli-frontends/opencode
 
 ## Contract
 
-Each target workspace must have a `## Daily Research` section with:
-- **Check**: URL or source to check
-- **Look for**: What to look for
-- **Last known**: Most recent state
-- **Sync** (optional): Bash command to run before research (generates structured data)
+Each target workspace must have a `## Daily Research` section describing:
+- What to check and how (URL for WebFetch, command to run, etc.)
+- What to look for
+- Last known state
 
-If **Sync** is present, run the command first and read its output as primary data source.
-
-The `/research-daily` command reads this section and logs results to `YYYYMMDD-summary.md`.
+The workspace decides its own research method. See each workspace's README for details.
 
 ## Adding New Targets
 
