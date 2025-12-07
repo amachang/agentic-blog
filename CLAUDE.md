@@ -20,10 +20,13 @@ All documentation under `docs/` must be written in English. This ensures:
 
 # docs/ Structure
 
-`docs/` is not a workspace, but all directories under `docs/` are workspaces with a consistent structure:
+All directories under `docs/` are workspaces:
 
-- **README.md** (required): Living document showing current state
-- **YYYYMMDD-*.md** (optional): Historical records, decision logs, detailed notes
-- **Sub-directories**: Nested workspaces following the same pattern
+- **README.md** (required): Current state - what's happening now
+- **YYYYMMDD-*.md** (optional): Historical records, detailed notes
+- **Sub-directories**: Nested workspaces with same pattern
 
-This structure prevents information explosion - README.md stays current, details escape to dated files.
+**Usage principle**: README.md is the single source of truth for current state.
+
+- **Exploring**: Always start with README.md before checking git status or individual files
+- **Updating**: Update README.md first to reflect current state; escape details to dated files
