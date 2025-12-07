@@ -13,10 +13,10 @@ This document logs problems discovered during the papers sync refactoring.
 | 1 | CLAUDE.md Lacks Project Identity | ✅ Resolved |
 | 2 | CLAUDE.md Contains Code-Derivable Information | ✅ Resolved |
 | 3 | Decision Policies Not in .work/FAQ/decisions | ⏸️ Deferred |
-| 4 | Research Tools Lack CLI Entrypoints | ❌ Open |
+| 4 | Research Tools Lack CLI Entrypoints | ✅ Resolved |
 | 5 | /research-daily Integration Unclear | ❌ Open |
 | 6 | Removed README Auto-Update but No Replacement | ❌ Open |
-| 7 | YYYYMMDD File Responsibility Unclear | ❌ Open |
+| 7 | YYYYMMDD File Responsibility Unclear | ✅ Resolved |
 
 ---
 
@@ -66,6 +66,21 @@ This document logs problems discovered during the papers sync refactoring.
 
 **Rationale**: Revert and bisect exist. Time spent asking "should I commit?" is wasted.
 
+### D7: Papers Sync Invocation
+
+**Decision**: `npx tsx tools/papers/sync.ts` - direct execution, no package.json scripts.
+
+**Rationale**: package.json scripts are a limited resource. Simple tools don't need them.
+
+### D8: Tool Output File Naming
+
+**Decision**: Tool outputs go to `docs/papers/YYYYMMDD-update.md` (flat structure, no subdirectories).
+
+**Rationale**:
+- `daily/` subdirectory was unnecessary complexity
+- `-update` suffix distinguishes from LLM-authored files
+- LLM may add insights in separate files or directly in README.md
+
 ---
 
 ## Resolved Problems
@@ -85,6 +100,20 @@ This document logs problems discovered during the papers sync refactoring.
 - Replaced with abstract descriptions (role only)
 - Added Quality Gates as framework, not command reference
 
+### 4. Research Tools Lack CLI Entrypoints ✅
+
+**Solution**:
+- Added CLI entrypoint to `tools/papers/sync.ts`
+- Can now run directly: `npx tsx tools/papers/sync.ts`
+- Outputs to `docs/papers/YYYYMMDD-update.md`
+
+### 7. YYYYMMDD File Responsibility Unclear ✅
+
+**Solution**:
+- Tool outputs: `docs/papers/YYYYMMDD-update.md` (auto-generated)
+- LLM insights: README.md updates or separate dated files at LLM's discretion
+- Removed `daily/` subdirectory - flat structure is simpler
+
 ---
 
 ## Deferred Problems
@@ -98,22 +127,6 @@ This document logs problems discovered during the papers sync refactoring.
 ---
 
 ## Open Problems
-
-### 4. Research Tools Lack CLI Entrypoints
-
-**Problem**: `syncDailyPapers()` is a library function with no direct invocation path.
-
-Current state:
-- Function exists in `tools/papers/sync.ts`
-- Can only be called via awkward `npx tsx -e "import..."` syntax
-- No proper CLI wrapper or script entrypoint
-
-**Consequence**:
-- `/research-daily` command cannot easily invoke the tool
-- Manual invocation is error-prone and verbose
-- Barrier to automation
-
----
 
 ### 5. /research-daily Integration Unclear
 
@@ -141,27 +154,10 @@ Context:
 
 ---
 
-### 7. YYYYMMDD File Responsibility Unclear
-
-**Problem**: Multiple actors may create dated files in docs/papers/, with unclear boundaries.
-
-Current situation:
-- `syncDailyPapers()` writes to `docs/papers/daily/YYYYMMDD-summary.md`
-- Daily research workflow might create `docs/papers/YYYYMMDD-daily-update.md`
-- Overlap and confusion about who owns what
-
-**Questions**:
-- Is `daily/` subdirectory the right location for tool output?
-- Should LLM notes go in parent `docs/papers/` or somewhere else?
-- How do tool outputs and LLM observations merge?
-
----
-
 ## Next Steps
 
-The remaining open problems (4-7) cluster around **tool integration**:
-- How tools are invoked
-- How tool output integrates with LLM workflow
-- Who owns which files
+The remaining open problems (5-6) are about **workflow integration**:
+- How `/research-daily` should invoke the papers sync tool
+- When and how README.md gets updated
 
-These require design decisions before implementation.
+These are workflow design questions, not implementation blockers.
