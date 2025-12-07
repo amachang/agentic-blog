@@ -51,6 +51,10 @@ All directories under `docs/` are workspaces:
 - **Exploring**: Always start with README.md before checking git status or individual files
 - **Updating**: Update README.md first to reflect current state; escape details to dated files
 
+# tools/
+
+TypeScript utilities invoked from prompts. Libraries, not CLI entrypoints.
+
 # Quality Gates
 
 These entrypoints define the project's quality framework:
