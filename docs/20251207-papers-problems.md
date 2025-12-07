@@ -14,8 +14,8 @@ This document logs problems discovered during the papers sync refactoring.
 | 2 | CLAUDE.md Contains Code-Derivable Information | ✅ Resolved |
 | 3 | Decision Policies Not in .work/FAQ/decisions | ⏸️ Deferred |
 | 4 | Research Tools Lack CLI Entrypoints | ✅ Resolved |
-| 5 | /research-daily Integration Unclear | ❌ Open |
-| 6 | Removed README Auto-Update but No Replacement | ❌ Open |
+| 5 | /research-daily Integration Unclear | ✅ Resolved |
+| 6 | Removed README Auto-Update but No Replacement | ✅ Resolved |
 | 7 | YYYYMMDD File Responsibility Unclear | ✅ Resolved |
 
 ---
@@ -133,75 +133,32 @@ This document logs problems discovered during the papers sync refactoring.
 
 **Note**: Policies remain in CLAUDE.md for now. Migration to `.work/FAQ/decisions/` is a future cleanup task.
 
----
+### 5. /research-daily Integration Unclear ✅
 
-## Open Problems
+**Solution**: Added special case handling in `/research-daily` for `docs/papers`:
 
-### 5. /research-daily Integration Unclear
+1. Run `npx tsx tools/papers/sync.ts` to generate `YYYYMMDD-update.md`
+2. Read the generated file as primary data source
+3. Add LLM insights via WebSearch if relevant (optional)
 
-**Problem**: Design mismatch between general research command and tool-based research.
+The existing UPDATE phase handles README.md updates with LLM discretion.
 
-Observations:
-- `/research-daily` uses WebFetch/WebSearch for general research
-- `docs/papers/` workspace needs `syncDailyPapers()` for structured data
-- Two different research paradigms (LLM browsing vs. API tools) are not integrated
+### 6. Removed README Auto-Update but No Replacement ✅
 
-**Question**: How should tool-based research (papers API) integrate with LLM-driven research (/research-daily)?
+**Solution**: README.md updates are handled by `/research-daily`'s existing UPDATE phase.
 
----
-
-### 6. Removed README Auto-Update but No Replacement
-
-**Problem**: `syncDailyPapers()` no longer updates `docs/papers/README.md`, but the workflow is undefined.
-
-Context:
-- Auto-update was removed to give LLM discretion over README content
-- This is philosophically correct (LLM should curate, not just append)
-- But now "Last sync" status has no update mechanism
-
-**Question**: Who/what updates the README.md now? When? Based on what trigger?
+- Tool generates structured data (`YYYYMMDD-update.md`)
+- LLM reads this during RESEARCH phase
+- LLM updates README.md during UPDATE phase with curation and judgment
+- No separate mechanism needed - fits within existing workflow
 
 ---
 
-## Next Steps
+## All Problems Resolved
 
-The remaining open problems (5-6) are about **workflow integration**:
-- How `/research-daily` should invoke the papers sync tool
-- When and how README.md gets updated
+| Status | Count |
+|--------|-------|
+| ✅ Resolved | 6 |
+| ⏸️ Deferred | 1 |
 
-These are workflow design questions, not implementation blockers.
-
----
-
-## Briefing for Next Session
-
-### What's Done
-
-1. **CLI entrypoint exists**: `npx tsx tools/papers/sync.ts`
-2. **Output path defined**: `docs/papers/YYYYMMDD-update.md`
-3. **File responsibility clear**: Tool writes `-update.md`, LLM curates README.md
-
-### What's Needed
-
-**Problem 5: /research-daily integration**
-
-The `/research-daily` command needs to:
-1. Run `npx tsx tools/papers/sync.ts` to generate today's update file
-2. Read the generated `docs/papers/YYYYMMDD-update.md`
-3. Optionally add LLM insights (WebSearch, analysis, etc.)
-4. Update `docs/papers/README.md` with current state
-
-Location: `.claude/commands/research-daily.md` (check if exists, may need creation or modification)
-
-**Problem 6: README update trigger**
-
-Decide: Should README.md update be part of `/research-daily` flow, or separate?
-
-Simplest answer: `/research-daily` updates README.md as final step. No separate mechanism needed.
-
-### Suggested Approach
-
-1. Read current `/research-daily` command (if exists)
-2. Add papers sync invocation as first step
-3. Add README.md update as final step
-4. Test the full flow
+The papers sync refactoring is complete. Only Problem 3 (decision policies migration) remains deferred as a separate future task.

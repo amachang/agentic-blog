@@ -19,10 +19,11 @@ When reporting, prioritize papers that advance:
 
 ### Sync Command
 
-```typescript
-import { syncDailyPapers } from '@tools/papers/sync';
-await syncDailyPapers({ minUpvotes: 10 });
+```bash
+npx tsx tools/papers/sync.ts
 ```
+
+Outputs to `docs/papers/YYYYMMDD-update.md`.
 
 ## Status
 
@@ -31,4 +32,4 @@ await syncDailyPapers({ minUpvotes: 10 });
 
 ## Sources
 
-- Hugging Face Daily Papers (daily/YYYYMMDD-summary.md)
+- Hugging Face Daily Papers (`YYYYMMDD-update.md` files)
