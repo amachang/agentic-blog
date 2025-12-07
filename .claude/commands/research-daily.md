@@ -4,14 +4,9 @@ Perform daily research across all tracked workspaces, checking for updates and r
 
 ## Research Targets
 
-Each path is a workspace containing a README.md with research instructions in its "Daily Research" section.
+Read targets from `docs/research/daily/README.md`.
 
-```
-docs/llm-cli-frontends/claude-code
-docs/llm-cli-frontends/codex-cli
-docs/llm-cli-frontends/gemini-cli
-docs/llm-cli-frontends/opencode
-```
+The targets are listed in the "Targets" section as workspace paths, each containing a README.md with research instructions in its "Daily Research" section.
 
 ## Workflow: SCAN -> ALIGN -> RESEARCH -> UPDATE -> REPORT
 
@@ -83,5 +78,5 @@ The goal is finding useful information, not following a script.
 To add a new research target:
 1. Create the workspace directory under docs/
 2. Add a README.md with basic info (name, repository, description)
-3. Add the path to the Research Targets list above
+3. Add the path to `docs/research/daily/README.md` Targets section
 4. The ALIGN phase will create the Daily Research section if missing
