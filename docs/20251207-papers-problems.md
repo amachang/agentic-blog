@@ -92,14 +92,14 @@ This document logs problems discovered during the papers sync refactoring.
 
 ### D10: Commands Are Method-Agnostic
 
-**Decision**: Commands describe workflow phases, not implementation methods. Workspace instructions determine method.
+**Decision**: Commands describe workflow phases, not implementation methods. Contracts point to workspaces, not specify formats.
 
-**Example** (`/research-daily` RESEARCH phase):
-- ❌ "Use WebFetch or WebSearch" (assumes method)
-- ❌ "If Sync field exists, run command first" (special case)
-- ✅ "Research method is determined by workspace instructions"
+**Evolution**:
+1. ❌ Special case in command: "if docs/papers, run sync tool"
+2. ❌ Contract specifies fields: "must have Check, Sync, Look for, Last known"
+3. ✅ Contract says: "see workspace for details"
 
-**Rationale**: When commands assume a "common case", adding alternatives feels like special cases. Method-agnostic commands don't accumulate exceptions.
+**Rationale**: When commands or contracts assume structure, adding alternatives feels like exceptions. Fully delegating to workspaces eliminates accumulation.
 
 ---
 
@@ -146,14 +146,13 @@ This document logs problems discovered during the papers sync refactoring.
 
 ### 5. /research-daily Integration Unclear ✅
 
-**Solution**: Added `**Sync**` field to workspace contract (`docs/research/daily/README.md`).
+**Solution**: Each workspace is self-describing.
 
-Each workspace specifies its own sync command (if any) in its Daily Research section:
-```
-- **Sync**: `npx tsx tools/papers/sync.ts` → `docs/papers/YYYYMMDD-update.md`
-```
+- `docs/research/daily/README.md` contract just says "see workspace for details"
+- `/research-daily` command says "follow workspace instructions"
+- `docs/papers/README.md` specifies its own method: `npx tsx tools/papers/sync.ts`
 
-No special cases in command files - each workspace controls its own research method.
+No templates, no field specifications, no method assumptions in command files.
 
 ### 6. Removed README Auto-Update but No Replacement ✅
 
