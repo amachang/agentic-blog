@@ -2,6 +2,13 @@
 
 Perform daily research across all tracked workspaces, checking for updates and recording findings.
 
+## Context
+
+First, read `docs/research/README.md` for:
+- Research concepts (Genre vs Specific Targets, Active vs Backlog)
+- Available methods and their purposes
+- Overall research strategy
+
 ## Research Targets
 
 Read targets from `docs/research/daily/README.md`.
