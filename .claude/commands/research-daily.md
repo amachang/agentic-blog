@@ -32,10 +32,15 @@ If a workspace README lacks a "Daily Research" section:
 ```markdown
 ## Daily Research
 
-- **Check**: [URL to check - releases page, changelog, etc.]
-- **Look for**: New versions, notable changes, deprecations
-- **Current**: [version] ([date if known])
+- **Check**: [URL or source to check]
+- **Look for**: [What to look for - updates, new items, changes, etc.]
+- **Last known**: [Most recent state - version, date, or description]
 ```
+
+**Examples:**
+- Software version: `**Last known**: v2.0.60 (2025-12-06)`
+- Paper tracking: `**Last known**: Checked 2025-12-05, 3 relevant papers found`
+- News/trends: `**Last known**: RAG dominant, agent frameworks emerging (2025-12)`
 
 ### 3. CHECK PRIOR RUNS
 

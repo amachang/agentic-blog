@@ -9,7 +9,7 @@ SST's CLI frontend supporting multiple LLM backends.
 
 - **Check**: GitHub releases page
 - **Look for**: New versions, provider additions, breaking changes
-- **Current**: v1.0.134
+- **Last known**: v1.0.134
 
 ## Current Version
 

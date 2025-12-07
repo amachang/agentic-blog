@@ -9,7 +9,7 @@ OpenAI's CLI frontend for GPT models.
 
 - **Check**: GitHub releases page
 - **Look for**: New versions, model changes, feature additions
-- **Current**: v0.65.0
+- **Last known**: v0.65.0
 
 ## Current Version
 

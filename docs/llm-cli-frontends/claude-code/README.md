@@ -9,7 +9,7 @@ Anthropic's CLI frontend for Claude.
 
 - **Check**: Changelog on main branch
 - **Look for**: New versions, feature additions, breaking changes
-- **Current**: v2.0.60
+- **Last known**: v2.0.60
 
 ## Current Version
 

@@ -9,7 +9,7 @@ Google's CLI frontend for Gemini.
 
 - **Check**: GitHub releases page
 - **Look for**: New stable versions, preview releases, breaking changes
-- **Current**: v0.19.4 (stable), v0.20.0-preview.1 (preview)
+- **Last known**: v0.19.4 (stable), v0.20.0-preview.1 (preview)
 
 ## Current Version
 
