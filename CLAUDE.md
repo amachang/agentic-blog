@@ -1,3 +1,24 @@
+# Project Identity
+
+**agentic-blog** - AI-driven technical media platform. A business collaboration between 多摩川機構エンジニアリング and StoryHub.
+
+- **Content**: AI/orchestrator research, generated as byproduct of daily research work
+- **Partnership**: StoryHub provides炎上チェック・SEO; 天野 provides content & tech
+- **Timeline**: Long-term project evolving over months and years
+
+## Documentation Principle
+
+**Code is truth. This file is for what code can't say.**
+
+This project changes daily. Documenting implementation details here (file paths, function signatures, build commands) creates stale documentation within days.
+
+Write here ONLY:
+- Policies that override default LLM behavior
+- Conventions not inferable from code
+- External business context
+
+---
+
 # Business Context (External Directories)
 
 If `.claude/settings.local.json` exists in a project (gitignored, so user-dependent), it may contain `additionalDirectories` with useful business context such as:
