@@ -33,8 +33,8 @@ Feature branches follow the pattern: `feature/<function>-phase<number>-<descript
 .work/
 ├── CURRENT_SPRINT.md    # Living Document - sprint status
 ├── TODO/               # Workspace - implementation details
-│   ├── README.md       # Status index (update obligation)
-│   └── STEP-*.md       # Work records (no update obligation after completion)
+│   ├── README.md       # Living - current status (update obligation)
+│   └── STEP-*.md       # Graduated archive - older STEP = more archived
 ├── ISSUES/
 │   ├── open/           # Workspace - active issues
 │   │   └── README.md   # Status index
