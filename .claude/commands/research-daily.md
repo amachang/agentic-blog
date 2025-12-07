@@ -49,6 +49,8 @@ For each workspace:
 - These are GUIDES, not rigid rules - adapt to what you find
 - Note any updates since last known state
 
+**Concurrency note**: When using WebFetch, avoid excessive parallel requests (max 3-5 concurrent) to prevent ETIMEDOUT errors. See Error Handling section for retry guidance if errors occur.
+
 ### 5. UPDATE
 
 When updates are found:
