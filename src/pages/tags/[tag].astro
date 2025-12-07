@@ -35,16 +35,18 @@ const sortedPosts = posts.sort(
     <main>
       <h1>Tag: {tag}</h1>
       <ul>
-        {sortedPosts.map((post) => (
-          <li>
-            <a href={`/posts/${post.id}`}>
-              <span>{post.data.title}</span>
-              <time datetime={post.data.pubDate.toISOString()}>
-                {post.data.pubDate.toLocaleDateString('ja-JP')}
-              </time>
-            </a>
-          </li>
-        ))}
+        {
+          sortedPosts.map((post) => (
+            <li>
+              <a href={`/posts/${post.id}`}>
+                <span>{post.data.title}</span>
+                <time datetime={post.data.pubDate.toISOString()}>
+                  {post.data.pubDate.toLocaleDateString('ja-JP')}
+                </time>
+              </a>
+            </li>
+          ))
+        }
       </ul>
       <a href="/">Back to Home</a>
     </main>

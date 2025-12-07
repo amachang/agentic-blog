@@ -23,9 +23,7 @@ const { title, pubDate, tags } = Astro.props;
           {pubDate.toLocaleDateString('ja-JP')}
         </time>
         <div>
-          {tags.map((tag) => (
-            <a href={`/tags/${tag}`}>{tag}</a>
-          ))}
+          {tags.map((tag) => <a href={`/tags/${tag}`}>{tag}</a>)}
         </div>
       </header>
       <main>

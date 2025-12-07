@@ -1,0 +1,15 @@
+# Daily Papers Summary - {{formattedDate}}
+
+> Automatically synced from Hugging Face Daily Papers
+
+**Total papers**: {{papersCount}}
+
+---
+
+{{#each papers}}
+{{> paperEntry paper=this index=(inc @index) authorsDisplay=(formatAuthors this.authors)}}
+{{#unless @last}}
+---
+
+{{/unless}}
+{{/each}}

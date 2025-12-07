@@ -5,9 +5,27 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "check": "astro check && tsc --noEmit -p tsconfig.json",
+    "lint": "eslint src tools",
+    "format": "prettier --write 'src/**/*.{ts,tsx,astro}' 'tools/**/*.ts'",
+    "format:check": "prettier --check 'src/**/*.{ts,tsx,astro}' 'tools/**/*.ts'",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "astro": "^5.0.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.6",
+    "@eslint/js": "^9.16.0",
+    "eslint": "^9.16.0",
+    "handlebars": "^4.7.8",
+    "prettier": "^3.4.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.0",
+    "vitest": "^4.0.15"
   }
 }
