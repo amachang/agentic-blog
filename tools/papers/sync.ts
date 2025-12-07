@@ -19,7 +19,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TEMPLATES_DIR = path.join(__dirname, '../templates/papers');
 
 const DOCS_PAPERS_DIR = 'docs/papers';
-const DAILY_DIR = `${DOCS_PAPERS_DIR}/daily`;
 
 // Register helpers
 Handlebars.registerHelper('inc', (value: number) => value + 1);
@@ -88,11 +87,11 @@ export async function syncDailyPapers(
   });
 
   // Ensure output directory exists
-  await fs.mkdir(DAILY_DIR, { recursive: true });
+  await fs.mkdir(DOCS_PAPERS_DIR, { recursive: true });
 
   // Generate and write summary
   const content = renderSummary(papers, dateStr);
-  const outputPath = path.join(DAILY_DIR, `${dateStr}-summary.md`);
+  const outputPath = path.join(DOCS_PAPERS_DIR, `${dateStr}-update.md`);
   await fs.writeFile(outputPath, content, 'utf-8');
 
   return {
@@ -101,4 +100,18 @@ export async function syncDailyPapers(
     papers,
     dateStr,
   };
+}
+
+// CLI entrypoint
+if (import.meta.url === `file://${process.argv[1]}`) {
+  syncDailyPapers()
+    .then((result) => {
+      console.log(
+        `Synced ${result.papersCount} papers to ${result.outputPath}`
+      );
+    })
+    .catch((err) => {
+      console.error(err);
+      process.exit(1);
+    });
 }
