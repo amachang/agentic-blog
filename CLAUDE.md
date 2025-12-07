@@ -8,14 +8,13 @@
 
 ## Documentation Principle
 
-**Code is truth. This file is for what code can't say.**
+**Workspace status is the only current truth.**
 
-This project changes daily. Documenting implementation details here (file paths, function signatures, build commands) creates stale documentation within days.
+This is a content-driven project. Code is infrastructure, not the point. What matters:
+- `docs/*/README.md` - current state of each workspace
+- Research progress, content pipeline, partnership status
 
-Write here ONLY:
-- Policies that override default LLM behavior
-- Conventions not inferable from code
-- External business context
+Don't document code details here. Code changes; grep it when needed.
 
 ---
 
