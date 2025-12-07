@@ -2,52 +2,104 @@
 
 Date: 2025-12-07
 
-This document logs problems discovered during the papers sync refactoring. These are observations, not solutions.
+This document logs problems discovered during the papers sync refactoring.
 
 ---
 
-## 1. CLAUDE.md Lacks Project Identity
+## Status Summary
 
-**Problem**: The CLAUDE.md file does not explain what this project is.
-
-- Jumps straight into implementation details (directories, commands)
-- No business context or purpose statement
-- A new reader arriving at the codebase has no idea what "agentic-blog" does
-- Assumes familiarity that does not exist
-
----
-
-## 2. CLAUDE.md Contains Code-Derivable Information
-
-**Problem**: CLAUDE.md documents things that can be discovered from the code itself.
-
-Examples of redundant documentation:
-- Specific file paths (findable via grep/glob)
-- Function names and usage examples
-- Template file listings with full directory trees
-- Build commands that exist in package.json
-
-**Consequences**:
-- Information becomes stale as code evolves
-- Maintenance burden to keep docs and code in sync
-- Contradictions when updates are missed
+| # | Problem | Status |
+|---|---------|--------|
+| 1 | CLAUDE.md Lacks Project Identity | ✅ Resolved |
+| 2 | CLAUDE.md Contains Code-Derivable Information | ✅ Resolved |
+| 3 | Decision Policies Not in .work/FAQ/decisions | ⏸️ Deferred |
+| 4 | Research Tools Lack CLI Entrypoints | ❌ Open |
+| 5 | /research-daily Integration Unclear | ❌ Open |
+| 6 | Removed README Auto-Update but No Replacement | ❌ Open |
+| 7 | YYYYMMDD File Responsibility Unclear | ❌ Open |
 
 ---
 
-## 3. Decision Policies Not in .work/FAQ/decisions
+## Decisions Made
 
-**Problem**: Policy decisions are scattered in CLAUDE.md instead of the designated location.
+### D1: Project Identity
 
-Policies that should be in `.work/FAQ/decisions/`:
-- "docs/ Language Policy" (English only requirement)
-- "Token Efficiency" principles
-- docs/ structure conventions
+**Decision**: agentic-blog is a business collaboration between Mechanica, Inc. and StoryHub, not a personal blog.
 
-**Consequence**: Decision rationale is mixed with operational instructions, making both harder to find and maintain.
+**Rationale**: Understanding the business context prevents LLM from treating this as a hobby project and over-documenting implementation details.
+
+### D2: Documentation Principle
+
+**Decision**: "Workspace status is the only current truth."
+
+**Rationale**:
+- This is a content-driven project; code is infrastructure
+- `docs/*/README.md` represents current state
+- Code details should be grepped, not documented
+
+### D3: CLAUDE.md Content Policy
+
+**Decision**: CLAUDE.md contains ONLY:
+- Policies that override default LLM behavior
+- Conventions not inferable from code
+- External business context
+
+**Anti-pattern**: Documenting file paths, function signatures, directory trees with specific names (e.g., `papers/`, `huggingface/`).
+
+### D4: Directory Abstraction Level
+
+**Decision**: `tools/` and `docs/` as concepts are important. Subdirectories below them are implementation details.
+
+**Example**:
+- ✅ "`tools/` - TypeScript utilities invoked from prompts"
+- ❌ "`tools/lib/huggingface/daily-papers.ts` - Hugging Face API client"
+
+### D5: Quality Gates as Framework
+
+**Decision**: `check/lint/format/test` are documented as a quality framework, not as specific commands.
+
+**Rationale**: These entrypoints may expand (e.g., workspace validation). The framework matters; implementation details don't.
+
+### D6: Git Policy
+
+**Decision**: Always commit. Don't ask.
+
+**Rationale**: Revert and bisect exist. Time spent asking "should I commit?" is wasted.
 
 ---
 
-## 4. Research Tools Lack CLI Entrypoints
+## Resolved Problems
+
+### 1. CLAUDE.md Lacks Project Identity ✅
+
+**Solution**: Added Project Identity section explaining:
+- Business collaboration (Mechanica × StoryHub)
+- Content-driven nature (research byproduct)
+- Long-term timeline
+
+### 2. CLAUDE.md Contains Code-Derivable Information ✅
+
+**Solution**:
+- Removed tools/ directory tree and file listings
+- Removed specific file paths and function examples
+- Replaced with abstract descriptions (role only)
+- Added Quality Gates as framework, not command reference
+
+---
+
+## Deferred Problems
+
+### 3. Decision Policies Not in .work/FAQ/decisions ⏸️
+
+**Status**: Deferred - separate concern from papers sync refactoring.
+
+**Note**: Policies remain in CLAUDE.md for now. Migration to `.work/FAQ/decisions/` is a future cleanup task.
+
+---
+
+## Open Problems
+
+### 4. Research Tools Lack CLI Entrypoints
 
 **Problem**: `syncDailyPapers()` is a library function with no direct invocation path.
 
@@ -63,21 +115,20 @@ Current state:
 
 ---
 
-## 5. /research-daily Integration Unclear
+### 5. /research-daily Integration Unclear
 
 **Problem**: Design mismatch between general research command and tool-based research.
 
 Observations:
 - `/research-daily` uses WebFetch/WebSearch for general research
 - `docs/papers/` workspace needs `syncDailyPapers()` for structured data
-- `docs/papers/README.md` says "Check: via syncDailyPapers()" but provides no clear invocation path
 - Two different research paradigms (LLM browsing vs. API tools) are not integrated
 
 **Question**: How should tool-based research (papers API) integrate with LLM-driven research (/research-daily)?
 
 ---
 
-## 6. Removed README Auto-Update but No Replacement
+### 6. Removed README Auto-Update but No Replacement
 
 **Problem**: `syncDailyPapers()` no longer updates `docs/papers/README.md`, but the workflow is undefined.
 
@@ -85,20 +136,18 @@ Context:
 - Auto-update was removed to give LLM discretion over README content
 - This is philosophically correct (LLM should curate, not just append)
 - But now "Last sync" status has no update mechanism
-- README.md "Current state" section has no defined maintainer
 
 **Question**: Who/what updates the README.md now? When? Based on what trigger?
 
 ---
 
-## 7. YYYYMMDD File Responsibility Unclear
+### 7. YYYYMMDD File Responsibility Unclear
 
 **Problem**: Multiple actors may create dated files in docs/papers/, with unclear boundaries.
 
 Current situation:
 - `syncDailyPapers()` writes to `docs/papers/daily/YYYYMMDD-summary.md`
 - Daily research workflow might create `docs/papers/YYYYMMDD-daily-update.md`
-- Both are valid per docs/ structure conventions
 - Overlap and confusion about who owns what
 
 **Questions**:
@@ -108,11 +157,11 @@ Current situation:
 
 ---
 
-## Summary
+## Next Steps
 
-These problems cluster around two themes:
+The remaining open problems (4-7) cluster around **tool integration**:
+- How tools are invoked
+- How tool output integrates with LLM workflow
+- Who owns which files
 
-1. **Documentation debt**: CLAUDE.md needs restructuring (identity, code-derivable info, policy location)
-2. **Tool integration gap**: Research tools exist but lack clear invocation paths and workflow integration
-
-Both require design decisions before implementation.
+These require design decisions before implementation.
