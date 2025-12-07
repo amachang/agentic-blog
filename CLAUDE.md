@@ -55,6 +55,10 @@ All directories under `docs/` are workspaces:
 
 TypeScript utilities invoked from prompts. Libraries, not CLI entrypoints.
 
+# Git Policy
+
+Commit always. Don't ask "should I commit?" - just commit. Revert and bisect exist for a reason.
+
 # Quality Gates
 
 These entrypoints define the project's quality framework:
