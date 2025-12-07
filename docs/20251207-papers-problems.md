@@ -90,15 +90,16 @@ This document logs problems discovered during the papers sync refactoring.
 - Easier to clean up: code within feature directories, dated files
 - This is why `package.json` scripts were avoided for papers sync
 
-### D10: No Special Cases in Command Files
+### D10: Commands Are Method-Agnostic
 
-**Decision**: Workspace-specific behavior belongs in workspace README, not in command files.
+**Decision**: Commands describe workflow phases, not implementation methods. Workspace instructions determine method.
 
-**Example**:
-- ❌ Special case in `/research-daily`: "if docs/papers, run sync tool"
-- ✅ Contract field in workspace: `**Sync**: command → output`
+**Example** (`/research-daily` RESEARCH phase):
+- ❌ "Use WebFetch or WebSearch" (assumes method)
+- ❌ "If Sync field exists, run command first" (special case)
+- ✅ "Research method is determined by workspace instructions"
 
-**Rationale**: Command files are shared resources. Special cases accumulate over time. Each workspace should control its own behavior.
+**Rationale**: When commands assume a "common case", adding alternatives feels like special cases. Method-agnostic commands don't accumulate exceptions.
 
 ---
 
