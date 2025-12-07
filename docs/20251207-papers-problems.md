@@ -90,6 +90,16 @@ This document logs problems discovered during the papers sync refactoring.
 - Easier to clean up: code within feature directories, dated files
 - This is why `package.json` scripts were avoided for papers sync
 
+### D10: No Special Cases in Command Files
+
+**Decision**: Workspace-specific behavior belongs in workspace README, not in command files.
+
+**Example**:
+- ❌ Special case in `/research-daily`: "if docs/papers, run sync tool"
+- ✅ Contract field in workspace: `**Sync**: command → output`
+
+**Rationale**: Command files are shared resources. Special cases accumulate over time. Each workspace should control its own behavior.
+
 ---
 
 ## Resolved Problems
@@ -135,13 +145,14 @@ This document logs problems discovered during the papers sync refactoring.
 
 ### 5. /research-daily Integration Unclear ✅
 
-**Solution**: Added special case handling in `/research-daily` for `docs/papers`:
+**Solution**: Added `**Sync**` field to workspace contract (`docs/research/daily/README.md`).
 
-1. Run `npx tsx tools/papers/sync.ts` to generate `YYYYMMDD-update.md`
-2. Read the generated file as primary data source
-3. Add LLM insights via WebSearch if relevant (optional)
+Each workspace specifies its own sync command (if any) in its Daily Research section:
+```
+- **Sync**: `npx tsx tools/papers/sync.ts` → `docs/papers/YYYYMMDD-update.md`
+```
 
-The existing UPDATE phase handles README.md updates with LLM discretion.
+No special cases in command files - each workspace controls its own research method.
 
 ### 6. Removed README Auto-Update but No Replacement ✅
 
