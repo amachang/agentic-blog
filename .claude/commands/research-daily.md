@@ -15,7 +15,7 @@ Read targets from `docs/research/daily/README.md`.
 
 The targets are listed in the "Targets" section as workspace paths, each containing a README.md with research instructions in its "Daily Research" section.
 
-## Workflow: SCAN -> ALIGN -> RESEARCH -> UPDATE -> REPORT
+## Workflow: SCAN -> ALIGN -> CHECK PRIOR RUNS -> RESEARCH -> UPDATE -> REPORT -> LOG RUN
 
 ### 1. SCAN
 
@@ -37,7 +37,18 @@ If a workspace README lacks a "Daily Research" section:
 - **Current**: [version] ([date if known])
 ```
 
-### 3. RESEARCH
+### 3. CHECK PRIOR RUNS
+
+Check if research was already run today by reading `docs/research/daily/YYYYMMDD-summary.md` (using today's date).
+
+If the file exists:
+- Parse the run sections to understand what was already checked
+- Note the timestamp of the last run
+- Track which updates were already found today
+
+Store this context for use in the REPORT phase. This does NOT skip the RESEARCH phase - always perform fresh research.
+
+### 4. RESEARCH
 
 For each workspace:
 - Follow the instructions in its "Daily Research" section
@@ -45,19 +56,70 @@ For each workspace:
 - Use WebFetch or WebSearch to check the specified sources
 - Note any updates since the recorded version
 
-### 4. UPDATE
+### 5. UPDATE
 
 When updates are found:
 - Update the workspace README.md with new version info
 - Create a dated file (YYYYMMDD-*.md) if there are notable changes
 - Keep updates concise and focused
 
-### 5. REPORT
+### 6. REPORT
 
-After processing all workspaces:
-- Summarize findings (updates found, no changes, errors)
+After processing all workspaces, provide TWO briefings:
+
+**Today's Briefing** (all updates found today):
+- Combine updates from prior runs today (from CHECK PRIOR RUNS) with this run's findings
+- Shows the full picture of what changed today
+- If this is the first run, this equals "Since Last Run"
+
+**Since Last Run Briefing**:
+- Only changes found in THIS run
+- If no changes: "No new updates since last run at HH:MM"
+- If changes: List what's new since the last run
+
+Also include:
 - List any workspaces where research instructions were added
 - Note any issues encountered
+
+### 7. LOG RUN
+
+Create or append to `docs/research/daily/YYYYMMDD-summary.md` (using today's date).
+
+Format for new file:
+```markdown
+# Daily Research Summary - YYYY-MM-DD
+
+## Run 1: HH:MM
+
+**Targets checked:** N workspaces
+**Updates found:** N
+**Errors:** N
+
+### Updates
+- target-name: vX.Y.Z released (changelog link)
+
+### No Changes
+- target-name: vX.Y.Z (current)
+
+---
+```
+
+For subsequent runs, append a new section:
+```markdown
+## Run N: HH:MM
+
+**Targets checked:** N workspaces
+**Updates found:** N
+**Errors:** N
+
+### Updates
+- target-name: description of update
+
+### No Changes
+- target-name: version (current)
+
+---
+```
 
 ## Error Handling
 
