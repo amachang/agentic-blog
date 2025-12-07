@@ -61,15 +61,7 @@ For each workspace:
 - These are GUIDES, not rigid rules - adapt to what you find
 - Use WebFetch or WebSearch to check the specified sources
 - Note any updates since the recorded version
-
-**Special case: `docs/papers`**
-
-This workspace has a dedicated sync tool. Before using WebFetch/WebSearch:
-
-1. Run: `npx tsx tools/papers/sync.ts`
-2. Read the generated `docs/papers/YYYYMMDD-update.md`
-3. Use this as your primary data source
-4. Add LLM insights via WebSearch if relevant (optional)
+- If **Sync** field exists, run that command first and read its output
 
 ### 5. UPDATE
 

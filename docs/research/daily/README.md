@@ -20,6 +20,9 @@ Each target workspace must have a `## Daily Research` section with:
 - **Check**: URL or source to check
 - **Look for**: What to look for
 - **Last known**: Most recent state
+- **Sync** (optional): Bash command to run before research (generates structured data)
+
+If **Sync** is present, run the command first and read its output as primary data source.
 
 The `/research-daily` command reads this section and logs results to `YYYYMMDD-summary.md`.
 
