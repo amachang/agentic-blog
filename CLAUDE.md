@@ -59,6 +59,20 @@ TypeScript utilities invoked from prompts. Libraries, not CLI entrypoints.
 
 Commit always. Don't ask "should I commit?" - just commit. Revert and bisect exist for a reason.
 
+# File Growth Over Time
+
+Every file grows. The question is whether it can be cleaned up.
+
+**Hard to clean up**:
+- Entries in shared config files (scripts, paths, rules)
+- Undated files (no way to judge staleness)
+
+**Easier to clean up**:
+- Code within a feature directory → delete the directory
+- Dated files → old ones are obviously old
+
+Workspaces use this: `README.md` is current state (overwritten), `YYYYMMDD-*.md` is history (prunable by age).
+
 # Quality Gates
 
 These entrypoints define the project's quality framework:
