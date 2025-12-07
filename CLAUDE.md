@@ -51,70 +51,13 @@ All directories under `docs/` are workspaces:
 - **Exploring**: Always start with README.md before checking git status or individual files
 - **Updating**: Update README.md first to reflect current state; escape details to dated files
 
-# tools/ Directory
+# Quality Gates
 
-TypeScript utilities for prompt-invoked operations. These are libraries, NOT CLI entrypoints.
+These entrypoints define the project's quality framework:
 
-## Structure
+- `npm run check` - Type checking
+- `npm run lint` - Static analysis
+- `npm run format` - Code formatting
+- `npm run test` - Tests
 
-```
-tools/
-├── __tests__/     # Vitest test files (mirrors source structure)
-├── lib/           # Shared libraries (API clients, utilities)
-│   └── huggingface/
-│       └── daily-papers.ts   # Hugging Face Daily Papers API client
-├── papers/
-│   └── sync.ts               # Paper sync tool
-└── templates/     # Handlebars template files
-    └── papers/
-```
-
-## Usage
-
-Tools are imported and invoked from prompts:
-
-```typescript
-import { syncDailyPapers } from '@tools/papers/sync';
-await syncDailyPapers({ minUpvotes: 10 });
-```
-
-For ad-hoc execution with tsx:
-
-```bash
-npx tsx -e "import { syncDailyPapers } from './tools/papers/sync.js'; await syncDailyPapers();"
-```
-
-## Build/Lint/Format
-
-Unified scripts for src/ and tools/:
-
-```bash
-npm run check        # Astro check + TypeScript type check
-npm run lint         # ESLint for src and tools
-npm run format       # Prettier format
-npm run format:check # Prettier check
-```
-
-## Testing
-
-Tests use vitest and are located in `tools/__tests__/`:
-
-```bash
-npm run test         # Run all tests once
-npm run test:watch   # Run tests in watch mode
-```
-
-Test file convention:
-- Test files: `tools/__tests__/**/*.test.ts`
-- Mirror the source structure: `tools/lib/foo.ts` -> `tools/__tests__/lib/foo.test.ts`
-
-## Templates
-
-Handlebars templates for markdown generation are in `tools/templates/`:
-
-```
-tools/templates/
-└── papers/
-    ├── summary.hbs       # Daily papers summary
-    └── paper-entry.hbs   # Single paper entry partial
-```
+Run before committing. May expand to include workspace validation.
