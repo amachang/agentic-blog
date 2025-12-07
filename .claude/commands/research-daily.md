@@ -15,7 +15,7 @@ Read targets from `docs/research/daily/README.md`.
 
 The targets are listed in the "Targets" section as workspace paths, each containing a README.md with research instructions in its "Daily Research" section.
 
-## Workflow: SCAN -> ALIGN -> CHECK PRIOR RUNS -> RESEARCH -> UPDATE -> REPORT -> LOG RUN
+## Workflow: SCAN -> ALIGN -> CHECK PRIOR RUNS -> RESEARCH -> UPDATE -> LOG RUN -> REPORT
 
 ### 1. SCAN
 
@@ -64,25 +64,7 @@ When updates are found:
 - Create a dated file (YYYYMMDD-*.md) if there are notable changes
 - Keep updates concise and focused
 
-### 6. REPORT
-
-After processing all workspaces, provide TWO briefings:
-
-**Today's Briefing** (all updates found today):
-- Combine updates from prior runs today (from CHECK PRIOR RUNS) with this run's findings
-- Shows the full picture of what changed today
-- If this is the first run, this equals "Since Last Run"
-
-**Since Last Run Briefing**:
-- Only changes found in THIS run
-- If no changes: "No new updates since last run at HH:MM"
-- If changes: List what's new since the last run
-
-Also include:
-- List any workspaces where research instructions were added
-- Note any issues encountered
-
-### 7. LOG RUN
+### 6. LOG RUN
 
 Create or append to `docs/research/daily/YYYYMMDD-summary.md` (using today's date).
 
@@ -127,6 +109,24 @@ For subsequent runs, append a new section:
 
 ---
 ```
+
+### 7. REPORT
+
+Final step: report to the user with TWO briefings.
+
+**Today's Briefing** (all updates found today):
+- Combine updates from prior runs today (from CHECK PRIOR RUNS) with this run's findings
+- Shows the full picture of what changed today
+- If this is the first run, this equals "Since Last Run"
+
+**Since Last Run Briefing**:
+- Only changes found in THIS run
+- If no changes: "No new updates since last run at HH:MM"
+- If changes: List what's new since the last run
+
+Also include:
+- List any workspaces where research instructions were added
+- Note any issues encountered
 
 ## Error Handling
 
