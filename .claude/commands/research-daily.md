@@ -45,6 +45,7 @@ If the file exists:
 - Parse the run sections to understand what was already checked
 - Note the timestamp of the last run
 - Track which updates were already found today
+- If parsing fails or the file is malformed, treat as if no prior runs exist today
 
 Store this context for use in the REPORT phase. This does NOT skip the RESEARCH phase - always perform fresh research.
 
@@ -101,6 +102,9 @@ Format for new file:
 ### No Changes
 - target-name: vX.Y.Z (current)
 
+### Errors (if any)
+- target-name: error description
+
 ---
 ```
 
@@ -117,6 +121,9 @@ For subsequent runs, append a new section:
 
 ### No Changes
 - target-name: version (current)
+
+### Errors (if any)
+- target-name: error description
 
 ---
 ```
