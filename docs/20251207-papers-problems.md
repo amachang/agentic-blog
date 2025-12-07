@@ -81,6 +81,15 @@ This document logs problems discovered during the papers sync refactoring.
 - `-update` suffix distinguishes from LLM-authored files
 - LLM may add insights in separate files or directly in README.md
 
+### D9: File Growth Over Time
+
+**Decision**: Prefer solutions that stay removable. Added to CLAUDE.md.
+
+**Key points**:
+- Hard to clean up: entries in shared config files, undated files
+- Easier to clean up: code within feature directories, dated files
+- This is why `package.json` scripts were avoided for papers sync
+
 ---
 
 ## Resolved Problems
@@ -161,3 +170,38 @@ The remaining open problems (5-6) are about **workflow integration**:
 - When and how README.md gets updated
 
 These are workflow design questions, not implementation blockers.
+
+---
+
+## Briefing for Next Session
+
+### What's Done
+
+1. **CLI entrypoint exists**: `npx tsx tools/papers/sync.ts`
+2. **Output path defined**: `docs/papers/YYYYMMDD-update.md`
+3. **File responsibility clear**: Tool writes `-update.md`, LLM curates README.md
+
+### What's Needed
+
+**Problem 5: /research-daily integration**
+
+The `/research-daily` command needs to:
+1. Run `npx tsx tools/papers/sync.ts` to generate today's update file
+2. Read the generated `docs/papers/YYYYMMDD-update.md`
+3. Optionally add LLM insights (WebSearch, analysis, etc.)
+4. Update `docs/papers/README.md` with current state
+
+Location: `.claude/commands/research-daily.md` (check if exists, may need creation or modification)
+
+**Problem 6: README update trigger**
+
+Decide: Should README.md update be part of `/research-daily` flow, or separate?
+
+Simplest answer: `/research-daily` updates README.md as final step. No separate mechanism needed.
+
+### Suggested Approach
+
+1. Read current `/research-daily` command (if exists)
+2. Add papers sync invocation as first step
+3. Add README.md update as final step
+4. Test the full flow
