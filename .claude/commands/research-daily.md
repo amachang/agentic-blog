@@ -33,6 +33,7 @@ If a workspace README lacks a "Daily Research" section:
 ## Daily Research
 
 - **Check**: [URL or source to check]
+- **Sync**: [Optional: command to run, e.g., `npx tsx tools/foo/sync.ts`]
 - **Look for**: [What to look for - updates, new items, changes, etc.]
 - **Last known**: [Most recent state - version, date, or description]
 ```
@@ -59,9 +60,11 @@ Store this context for use in the REPORT phase. This does NOT skip the RESEARCH 
 For each workspace:
 - Follow the instructions in its "Daily Research" section
 - These are GUIDES, not rigid rules - adapt to what you find
-- Use WebFetch or WebSearch to check the specified sources
-- Note any updates since the recorded version
-- If **Sync** field exists, run that command first and read its output
+- Note any updates since **Last known**
+
+Research method is determined by workspace instructions:
+- **Check** with URL → use WebFetch or WebSearch
+- **Sync** with command → run command, read output
 
 ### 5. UPDATE
 
