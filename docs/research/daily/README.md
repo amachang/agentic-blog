@@ -7,6 +7,7 @@
 各パスは workspace で、README.md の "Daily Research" セクションに調査指示がある。
 
 ```
+docs/papers
 docs/llm-cli-frontends/claude-code
 docs/llm-cli-frontends/codex-cli
 docs/llm-cli-frontends/gemini-cli

@@ -41,12 +41,6 @@ const summaryTemplateSource = await fs.readFile(
 );
 const summaryTemplate = Handlebars.compile(summaryTemplateSource);
 
-const readmeTemplateSource = await fs.readFile(
-  path.join(TEMPLATES_DIR, 'readme.hbs'),
-  'utf-8'
-);
-const readmeTemplate = Handlebars.compile(readmeTemplateSource);
-
 export interface SyncOptions extends FetchOptions {
   date?: string; // YYYYMMDD format, defaults to today
 }
@@ -75,16 +69,11 @@ export function renderSummary(papers: DailyPaper[], dateStr: string): string {
   });
 }
 
-export function renderReadme(papersCount: number, dateStr: string): string {
-  return readmeTemplate({
-    papersCount,
-    formattedDate: formatDateDisplay(dateStr),
-  });
-}
-
 export interface SyncResult {
   papersCount: number;
   outputPath: string;
+  papers: DailyPaper[];
+  dateStr: string;
 }
 
 export async function syncDailyPapers(
@@ -106,20 +95,10 @@ export async function syncDailyPapers(
   const outputPath = path.join(DAILY_DIR, `${dateStr}-summary.md`);
   await fs.writeFile(outputPath, content, 'utf-8');
 
-  // Update workspace README
-  await updateWorkspaceReadme(papers.length, dateStr);
-
   return {
     papersCount: papers.length,
     outputPath,
+    papers,
+    dateStr,
   };
-}
-
-async function updateWorkspaceReadme(
-  papersCount: number,
-  lastSyncDate: string
-): Promise<void> {
-  const readmePath = path.join(DOCS_PAPERS_DIR, 'README.md');
-  const content = renderReadme(papersCount, lastSyncDate);
-  await fs.writeFile(readmePath, content, 'utf-8');
 }

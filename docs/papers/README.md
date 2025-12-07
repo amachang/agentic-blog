@@ -2,6 +2,28 @@
 
 Tracking AI/ML research papers from various sources.
 
+## Daily Research
+
+- **Check**: Hugging Face Daily Papers API via `syncDailyPapers()` tool
+- **Look for**: AGI-related papers, reasoning/planning advances, agent architectures, world models, self-improvement mechanisms
+- **Last known**: 2025-12-07 sync completed (20 papers)
+
+### Briefing Focus
+
+When reporting, prioritize papers that advance:
+1. **Reasoning & Planning** - Chain-of-thought, tree search, multi-step reasoning
+2. **Agent Architectures** - Tool use, memory systems, autonomous agents
+3. **World Models** - Environment simulation, predictive models
+4. **Scalable Oversight** - Alignment techniques that scale with capability
+5. **Emergent Capabilities** - Novel behaviors from scale or training
+
+### Sync Command
+
+```typescript
+import { syncDailyPapers } from '@tools/papers/sync';
+await syncDailyPapers({ minUpvotes: 10 });
+```
+
 ## Status
 
 - **Last sync**: 2025-12-07
@@ -10,12 +32,3 @@ Tracking AI/ML research papers from various sources.
 ## Sources
 
 - Hugging Face Daily Papers (daily/YYYYMMDD-summary.md)
-
-## Usage
-
-Sync daily papers via prompt:
-
-```typescript
-import { syncDailyPapers } from '@tools/papers/sync';
-await syncDailyPapers({ minUpvotes: 10 });
-```

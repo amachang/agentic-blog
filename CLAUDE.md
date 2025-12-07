@@ -96,6 +96,5 @@ Handlebars templates for markdown generation are in `tools/templates/`:
 tools/templates/
 └── papers/
     ├── summary.hbs       # Daily papers summary
-    ├── paper-entry.hbs   # Single paper entry partial
-    └── readme.hbs        # Papers workspace README
+    └── paper-entry.hbs   # Single paper entry partial
 ```

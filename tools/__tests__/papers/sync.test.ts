@@ -4,7 +4,6 @@ import {
   formatDateDisplay,
   formatAuthors,
   renderSummary,
-  renderReadme,
 } from '../../papers/sync.js';
 import type { DailyPaper } from '../../lib/huggingface/daily-papers.js';
 
@@ -95,15 +94,5 @@ describe('renderSummary', () => {
     expect(result).toContain('## 1. Test Paper');
     expect(result).toContain('## 2. Second Paper');
     expect(result).toContain('**Total papers**: 2');
-  });
-});
-
-describe('renderReadme', () => {
-  it('renders readme with sync status', () => {
-    const result = renderReadme(15, '20241207');
-
-    expect(result).toContain('# Papers Workspace');
-    expect(result).toContain('**Last sync**: 2024-12-07');
-    expect(result).toContain('**Papers in last sync**: 15');
   });
 });
