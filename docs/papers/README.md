@@ -7,7 +7,7 @@ Tracking AI/ML research papers from various sources.
 - **Check**: Hugging Face Daily Papers API
 - **Sync**: `npx tsx tools/papers/sync.ts` → `docs/papers/YYYYMMDD-update.md`
 - **Look for**: AGI-related papers, reasoning/planning advances, agent architectures, world models, self-improvement mechanisms
-- **Last known**: 2025-12-07 sync completed (20 papers)
+- **Last known**: 2025-12-08 sync completed (50 papers)
 
 ### Briefing Focus
 
@@ -20,8 +20,8 @@ When reporting, prioritize papers that advance:
 
 ## Status
 
-- **Last sync**: 2025-12-07
-- **Papers in last sync**: 20
+- **Last sync**: 2025-12-08
+- **Papers in last sync**: 50
 
 ## Sources
 
