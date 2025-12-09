@@ -26,8 +26,23 @@ Daily research alone isn't publishable content. Articles need at least one of:
 
 Not writing articles yet. Designing the system for content creation (self + AI).
 
+### Key Insight: Human Actions Create Differentiators
+
+Core competence can be supplemented by LLM Agents. What matters is **human action**.
+
+| LLM can do | Human action |
+|------------|--------------|
+| Generate opinions | **Choose** opinion (considering context, readers, other articles) |
+| Write text | **Go** to interviews/events |
+| Analyze | **Build** things with own hands |
+| Organize knowledge | **Experience** things |
+
+LLM = generator. Human = **editor & actor**.
+
+The verbs are different: 選ぶ、行く、動かす、する
+
 **Next (from 2025-12-10):**
-- [ ] Explore patterns for creating differentiators
+- [ ] Explore patterns for creating differentiators (focus on human actions)
 
 ## Future Plans
 
