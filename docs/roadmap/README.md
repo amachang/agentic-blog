@@ -22,10 +22,12 @@ Daily research alone isn't publishable content. Articles need at least one of:
 | Things I built | 私が実際に手を動かした制作物 | Tutorials, demos, tools |
 | Hands-on experience | 私の手を動かした体験 | "I tried X and here's what happened" |
 
-### Immediate Next Steps
+### Current Phase: Design
 
-1. [ ] Decide which differentiator to apply to current research
-2. [ ] Write one article as a proof-of-concept
+Not writing articles yet. Designing the system for content creation (self + AI).
+
+**Next (from 2025-12-10):**
+- [ ] Explore patterns for creating differentiators
 
 ## Future Plans
 
